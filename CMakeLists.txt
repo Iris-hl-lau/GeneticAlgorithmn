@@ -4,4 +4,4 @@ project(GeneticAlgorithmn)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -std=c++14")
 
-add_executable(GeneticAlgorithmn main.cpp)
+add_executable(GeneticAlgorithmn main.cpp city.hpp tour.cpp tour.hpp city.cpp)
