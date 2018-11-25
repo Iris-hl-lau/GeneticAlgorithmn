@@ -33,6 +33,9 @@ vector<tour> populate_tours() {
 
 
 int main() {
-    populate_tours();
+    vector<tour> tour = populate_tours();
+    for(auto it = tour.begin(); it != tour.end(); it++) {
+        cout << it->get_tour_distance() << endl;
+    }
     return 0;
 }

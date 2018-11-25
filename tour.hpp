@@ -28,7 +28,7 @@ public:
     explicit tour(vector<city> tour_cities);
     void shuffle_cities();
     double get_distance(city a, city b);
-    int get_tour_distance(tour a_tour);
+    double get_tour_distance();
     double determine_fitness(); //short tours have better fitness
     void select_parents();
     void crossover();

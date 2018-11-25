@@ -3,6 +3,8 @@
 //
 
 #include "tour.hpp"
+#include <iostream>
+using namespace std;
 
 tour::tour(vector<city> tour_cities) : tour_cities(tour_cities) {}
 
@@ -22,22 +24,24 @@ double tour::get_distance(city a, city b) {
     return distance;
 }
 
-int tour::get_tour_distance(tour a_tour) {
+double tour::get_tour_distance() {
     double total_tour_distance = 0;
-    vector<city> tour = a_tour.get_cities();
-    for(auto iter = tour.begin(); iter != tour.end(); iter++) {
+    city &start = *tour_cities.begin();
+    city &end = *(tour_cities.end() - 1);
+    for(auto iter = tour_cities.begin(); iter != tour_cities.end() - 1; iter++) {
         city &a = *iter;
         city &b = *(iter + 1);
         total_tour_distance += get_distance(a, b);
-
-        if(iter == tour.end() - 1) {
-            a = *tour.begin();
-            total_tour_distance += get_distance(a, b);
-        }
     }
+    total_tour_distance += get_distance(start, end);
     return total_tour_distance;
+}
+
+double tour::determine_fitness() {
+    return 0;
 }
 
 vector<city> tour::get_cities() {
     return tour_cities;
 }
+
