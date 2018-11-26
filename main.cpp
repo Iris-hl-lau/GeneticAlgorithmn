@@ -87,12 +87,12 @@ void mutate();
  */
 int main() {
     vector<tour> tour = populate_tours();
-    double base = base_distance(tour);
+//    double base = base_distance(tour);
     tour.at(4).contains_city("A"); // testing function
-    int iterations = 0;
-    while( / base < IMPROVEMENT_FACTOR && iterations <= ITERATIONS) {
-
-        iterations++;
-    }
+//    int iterations = 0;
+//    while( / base < IMPROVEMENT_FACTOR && iterations <= ITERATIONS) {
+//
+//        iterations++;
+//    }
     return 0;
 }
