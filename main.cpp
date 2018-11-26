@@ -9,7 +9,7 @@ vector<tour> populate_tours() {
         int name_value = 65;
         vector<city> city_tour;
         for (int i = 0; i < CITIES_IN_TOUR; i++) { //make cities
-            char ascii_name = name_value;
+            char ascii_name = (char)name_value;
             string name(1, ascii_name);
             int x = rand() % MAP_BOUNDARY;
             int y = rand() % MAP_BOUNDARY;
@@ -34,8 +34,19 @@ vector<tour> populate_tours() {
 
 int main() {
     vector<tour> tour = populate_tours();
-    for(auto it = tour.begin(); it != tour.end(); it++) {
+    double fittest_tour = tour.begin()->get_tour_distance();
+    cout << fittest_tour << endl;
+    int index = 0; // tour index
+    for(auto it = tour.begin() + 1; it != tour.end(); it++) {
         cout << it->get_tour_distance() << endl;
+        if(it->get_tour_distance() < fittest_tour) {
+            fittest_tour = it->get_tour_distance();
+            index = (int)(it - tour.begin());
+        }
+
     }
+    cout << "" << tour.at(index).determine_fitness() << endl;
+    cout << FITNESS_SCALE / fittest_tour << endl;
+    tour.at(index).contains_city("A");
     return 0;
 }

@@ -19,10 +19,10 @@
 #define MUTATION_RATE 15
 #define NUMBER_OF_PARENTS
 #define NUMBER_OF_ELITES 1
+#define FITNESS_SCALE 100000
 
 class tour {
 private:
-    double fittest_tour;
     vector<city> tour_cities;
 public:
     explicit tour(vector<city> tour_cities);
@@ -33,7 +33,7 @@ public:
     void select_parents();
     void crossover();
     void mutate();
-    bool contains_city();
+    bool contains_city(string name);
     vector<city> get_cities();
 };
 

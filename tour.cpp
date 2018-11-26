@@ -38,7 +38,18 @@ double tour::get_tour_distance() {
 }
 
 double tour::determine_fitness() {
-    return 0;
+    double fitness = FITNESS_SCALE / get_tour_distance();
+    return fitness;
+}
+
+bool tour::contains_city(string name) {
+    for (auto iter = tour_cities.begin(); iter != tour_cities.end(); iter++) {
+        if(iter->get_name() == name) {
+            cout << "hello" << endl;
+            return true;
+        }
+    }
+    return false;
 }
 
 vector<city> tour::get_cities() {
