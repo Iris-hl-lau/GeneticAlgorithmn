@@ -8,7 +8,9 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-
+/**
+ * City prototype
+ */
 class city {
 private :
     string name; //Unique city name

@@ -2,6 +2,10 @@
 #include "city.hpp"
 #include "tour.hpp"
 
+/**
+ * Creates a vector of tours
+ * @return Vector of tours
+ */
 vector<tour> populate_tours() {
     vector<tour> tours;
     for (int j = 0; j < POPULATION_SIZE; j++) { //make tours
@@ -29,13 +33,18 @@ vector<tour> populate_tours() {
     return tours;
 }
 
+void set_elite_index() {
 
+}
 
-
-int main() {
-    vector<tour> tour = populate_tours();
+/**
+ * Returns the base distance which is the fittest tour
+ * @param tour Vector of tours
+ * @return Base distance
+ */
+double base_distance(vector<tour> tour) {
     double fittest_tour = tour.begin()->get_tour_distance();
-    cout << fittest_tour << endl;
+    //cout << fittest_tour << endl;
     int index = 0; // tour index
     for(auto it = tour.begin() + 1; it != tour.end(); it++) {
         cout << it->get_tour_distance() << endl;
@@ -45,8 +54,24 @@ int main() {
         }
 
     }
-    cout << "" << tour.at(index).determine_fitness() << endl;
-    cout << FITNESS_SCALE / fittest_tour << endl;
-    tour.at(index).contains_city("A");
+    cout << tour.at(index).determine_fitness() << endl; //testing function
+//    cout << FITNESS_SCALE / fittest_tour << endl;
+    return fittest_tour;
+}
+
+//void selection(vector<tour> tour_vector) {
+//    tour tmp = tour_vector[0];
+//    swap(vector[], vector[]);
+//    tour_vector.pop_back();
+//}
+
+/**
+ * Drives the program
+ * @return Integer
+ */
+int main() {
+    vector<tour> tour = populate_tours();
+    double base = base_distance(tour);
+    tour.at(4).contains_city("A"); // testing function
     return 0;
 }

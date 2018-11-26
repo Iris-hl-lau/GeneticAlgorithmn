@@ -21,6 +21,9 @@
 #define NUMBER_OF_ELITES 1
 #define FITNESS_SCALE 100000
 
+/**
+ * Prototype of tour
+ */
 class tour {
 private:
     vector<city> tour_cities;
