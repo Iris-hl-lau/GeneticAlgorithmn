@@ -78,8 +78,8 @@ tour select_parents(vector<tour> tour_cities) {
     }
 }
 
-void crossover();
-void mutate();
+//void crossover();
+//void mutate();
 
 /**
  * Drives the program
