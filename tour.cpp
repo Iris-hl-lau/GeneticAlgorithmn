@@ -84,4 +84,3 @@ bool tour::contains_city(string name) {
 vector<city> tour::get_cities() {
     return tour_cities;
 }
-

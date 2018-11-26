@@ -2,6 +2,8 @@
 #include "city.hpp"
 #include "tour.hpp"
 
+int elite_index;
+
 /**
  * Creates a vector of tours
  * @return Vector of tours
@@ -33,10 +35,6 @@ vector<tour> populate_tours() {
     return tours;
 }
 
-void set_elite_index() {
-
-}
-
 /**
  * Returns the base distance which is the fittest tour
  * @param tour Vector of tours
@@ -45,25 +43,43 @@ void set_elite_index() {
 double base_distance(vector<tour> tour) {
     double fittest_tour = tour.begin()->get_tour_distance();
     //cout << fittest_tour << endl;
-    int index = 0; // tour index
+    elite_index = 0; // tour index
     for(auto it = tour.begin() + 1; it != tour.end(); it++) {
         cout << it->get_tour_distance() << endl;
         if(it->get_tour_distance() < fittest_tour) {
             fittest_tour = it->get_tour_distance();
-            index = (int)(it - tour.begin());
+            elite_index = (int)(it - tour.begin());
         }
 
     }
-    cout << tour.at(index).determine_fitness() << endl; //testing function
+    cout << tour.at(elite_index).determine_fitness() << endl; //testing function
 //    cout << FITNESS_SCALE / fittest_tour << endl;
     return fittest_tour;
 }
 
-//void selection(vector<tour> tour_vector) {
-//    tour tmp = tour_vector[0];
-//    swap(vector[], vector[]);
-//    tour_vector.pop_back();
-//}
+/**
+ * Select parents for simple genetic algorithmn
+ * @param tour_cities Vector of tours
+ */
+tour select_parents(vector<tour> tour_cities) {
+    double fitness_sum = 0;
+    double partial_sum = 0;
+    for(auto city : tour_cities) {
+        fitness_sum += city.determine_fitness();
+    }
+    srand(time(NULL));
+    int random_num = rand() % (int)fitness_sum;
+    for(auto a_tour: tour_cities) {
+        partial_sum += a_tour.determine_fitness();
+        if(partial_sum > random_num) {
+            tour city_tour = a_tour;
+            return city_tour;
+        }
+    }
+}
+
+void crossover();
+void mutate();
 
 /**
  * Drives the program
@@ -73,5 +89,10 @@ int main() {
     vector<tour> tour = populate_tours();
     double base = base_distance(tour);
     tour.at(4).contains_city("A"); // testing function
+    int iterations = 0;
+    while( / base < IMPROVEMENT_FACTOR && iterations <= ITERATIONS) {
+
+        iterations++;
+    }
     return 0;
 }

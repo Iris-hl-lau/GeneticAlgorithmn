@@ -15,12 +15,12 @@
 #define SHUFFLES 64
 #define ITERATIONS 1000
 #define MAP_BOUNDARY 1000
-#define PARENT_POOL_SIZE 5
-#define MUTATION_RATE 15
-#define NUMBER_OF_PARENTS
-#define NUMBER_OF_ELITES 1
+//#define PARENT_POOL_SIZE 5
+//#define MUTATION_RATE 15
+//#define NUMBER_OF_PARENTS
+//#define NUMBER_OF_ELITES 1
 #define FITNESS_SCALE 100000
-
+#define IMPROVEMENT_FACTOR 0.5
 /**
  * Prototype of tour
  */
@@ -33,9 +33,6 @@ public:
     double get_distance(city a, city b);
     double get_tour_distance();
     double determine_fitness(); //short tours have better fitness
-    void select_parents();
-    void crossover();
-    void mutate();
     bool contains_city(string name);
     vector<city> get_cities();
 };
